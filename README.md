@@ -72,16 +72,10 @@ void loop()
 Please note that you might need to go outdoors for the GPS module to work properly.
 
 
-## Schematic Online Viewer
-
-<div className="altium-ecad-viewer" data-project-src="https://github.com/Longan-Labs/XIAO_MATRIX_RES/raw/main/EAGLE_XIAO_MATRIX.zip" style={{borderRadius: '0px 0px 4px 4px', height: 500, borderStyle: 'solid', borderWidth: 1, borderColor: 'rgb(241, 241, 241)', overflow: 'hidden', maxWidth: 1280, maxHeight: 700, boxSizing: 'border-box'}}>
-</div>
-
-
 ## Resources
 
-- **[Zip]** [Eagle file](https://github.com/Longan-Labs/XIAO_MATRIX_RES/raw/main/EAGLE_XIAO_MATRIX.zip)
-- **[PDF]** [Datasheet - L76-L](https://github.com/Longan-Labs/XIAO_MATRIX_RES/blob/main/WS2812B-1010-DATASHEET.PDF)
+- **[Zip]** [Eagle file](https://github.com/Longan-Labs/XIAO_GPS/raw/main/XIAO_GPS.zip)
+- **[PDF]** [Datasheet - L76-L](https://github.com/Longan-Labs/XIAO_GPS/raw/main/L76-L.zip)
 
 ## Tech Support
 If you have any technical issue.  submit the issue into our [forum](https://forum.seeedstudio.com/).
