@@ -71,6 +71,18 @@ void loop()
 
 Please note that you might need to go outdoors for the GPS module to work properly.
 
+## Work without XIAO
+
+If you wish to utilize the GPS module with other microcontrollers, they can make use of the four solder pads available on the circuit board: 3V, GND, TX, and RX.
+
+By connecting these pads to the respective pins on the desired microcontroller, the L76-L module can be integrated and operated without the XIAO. Ensure to refer to the specific microcontroller's documentation for proper pin configurations and connections.
+
+|L76-L module|Others MCU|
+|------------|----------|
+|3V|3.3V|
+|GND|GND|
+|TX|RX|
+|RX|TX|
 
 ## Resources
 
