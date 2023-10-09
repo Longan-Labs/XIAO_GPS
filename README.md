@@ -59,7 +59,7 @@ The L76-L module outputs GPS information via the serial port every 1 second. In 
 ```Arduino
 void setup()
 {
-    Serial1.begin(115200, SERIAL_8N1, D3, D2);    // init the Serial1
+    Serial1.begin(9600, SERIAL_8N1, D3, D2);    // init the Serial1
     Serial.begin(9600);
 }
 
