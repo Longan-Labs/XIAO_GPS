@@ -71,6 +71,103 @@ void loop()
 
 Please note that you might need to go outdoors for the GPS module to work properly.
 
+### 5. Working with TinyGPSPlus Library
+
+In the example above, we were only able to view the raw data output from the GPS. To better retrieve and understand the data, we can utilize the tinyGPSPlus library. The link to this library is [here](https://github.com/Longan-Labs/TinyGPSPlus_XIAO_GPS). With this library, we can obtain more detailed and clear information. After installing the library mentioned above, upload the following code to your XIAO ESP32C3:
+
+```Arduino
+#include <TinyGPSPlus.h>
+#include <SoftwareSerial.h>
+
+static const int RXPin = D3, TXPin = D2;
+static const uint32_t GPSBaud = 9600;
+
+// The TinyGPSPlus object
+TinyGPSPlus gps;
+
+// The serial connection to the GPS device
+SoftwareSerial ss(RXPin, TXPin);
+
+void setup()
+{
+    Serial.begin(115200);
+    ss.begin(GPSBaud);
+
+    Serial.println(F("DeviceExample.ino"));
+    Serial.println(F("A simple demonstration of TinyGPSPlus with an attached GPS module"));
+    Serial.print(F("Testing TinyGPSPlus library v. ")); Serial.println(TinyGPSPlus::libraryVersion());
+    Serial.println(F("by Mikal Hart"));
+    Serial.println();
+}
+
+void loop()
+{
+    // This sketch displays information every time a new sentence is correctly encoded.
+    while (ss.available() > 0)
+    if (gps.encode(ss.read()))
+    displayInfo();
+
+    if (millis() > 5000 && gps.charsProcessed() < 10)
+    {
+        Serial.println(F("No GPS detected: check wiring."));
+        while(true);
+    }
+}
+
+void displayInfo()
+{
+    Serial.print(F("Location: "));
+    if (gps.location.isValid())
+    {
+        Serial.print(gps.location.lat(), 6);
+        Serial.print(F(","));
+        Serial.print(gps.location.lng(), 6);
+    }
+    else
+    {
+        Serial.print(F("INVALID"));
+    }
+
+    Serial.print(F("  Date/Time: "));
+    if (gps.date.isValid())
+    {
+        Serial.print(gps.date.month());
+        Serial.print(F("/"));
+        Serial.print(gps.date.day());
+        Serial.print(F("/"));
+        Serial.print(gps.date.year());
+    }
+    else
+    {
+        Serial.print(F("INVALID"));
+    }
+
+    Serial.print(F(" "));
+    if (gps.time.isValid())
+    {
+        if (gps.time.hour() < 10) Serial.print(F("0"));
+        Serial.print(gps.time.hour());
+        Serial.print(F(":"));
+        if (gps.time.minute() < 10) Serial.print(F("0"));
+        Serial.print(gps.time.minute());
+        Serial.print(F(":"));
+        if (gps.time.second() < 10) Serial.print(F("0"));
+        Serial.print(gps.time.second());
+        Serial.print(F("."));
+        if (gps.time.centisecond() < 10) Serial.print(F("0"));
+        Serial.print(gps.time.centisecond());
+    }
+    else
+    {
+        Serial.print(F("INVALID"));
+    }
+
+    Serial.println();
+}
+```
+
+// 黎老板帮忙截个图，放在这里
+
 ## Work without XIAO
 
 If you wish to utilize the GPS module with other microcontrollers, they can make use of the four solder pads available on the circuit board: 3V, GND, TX, and RX.
