@@ -64,7 +64,7 @@ The L76-L module outputs GPS information via the serial port every 1 second. In 
 
 #include <SoftwareSerial.h>
 
-SoftwareSerial gps(D2, D3); // RX, TX
+SoftwareSerial gps(D3, D2); // RX, TX
 
 void setup()
 {
