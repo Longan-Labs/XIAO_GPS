@@ -52,26 +52,35 @@ Once the soldering is complete, you can proceed to connect the expansion board t
 ### 3. Connecting to Your Computer:
 For programming the XIAO ESP32C3, you'll need a TYPE-C USB data cable. Connect one end to the XIAO ESP32C3 and the other to your computer. For a detailed guide on programming the XIAO ESP32C3, please refer to this [documentation](https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/).
 
-### 4. Programming
+### 4. Install the software serial library
+If you are using the XIAO ESP32C3 or XIAO ESP32S3, you will first need to install a software serial library. You can click [here](https://github.com/Longan-Labs/XIAO_GPS/raw/main/espsoftwareserial-main.zip) to obtain the library.
+
+
+### 5. Get the RAW data
 
 The L76-L module outputs GPS information via the serial port every 1 second. In this example, we print the content received from the serial port. You will be able to see a lot of information, including time, satellites, as well as latitude and longitude. Here's the code:
 
 ```Arduino
+
+#include <SoftwareSerial.h>
+
+SoftwareSerial gps(D2, D3); // RX, TX
+
 void setup()
 {
-    Serial1.begin(9600, SERIAL_8N1, D3, D2);    // init the Serial1
+    gps.begin(9600);    // init the Serial1
     Serial.begin(9600);
 }
 
 void loop()
 {
-    while(Serial1.available())Serial.write(Serial1.read());
+    while(gps.available())Serial.write(gps.read());
 }
 ```
 
 Please note that you might need to go outdoors for the GPS module to work properly.
 
-### 5. Working with TinyGPSPlus Library
+### 6. Working with TinyGPSPlus Library
 
 In the example above, we were only able to view the raw data output from the GPS. To better retrieve and understand the data, we can utilize the tinyGPSPlus library. The link to this library is [here](https://github.com/Longan-Labs/TinyGPSPlus_XIAO_GPS). With this library, we can obtain more detailed and clear information. After installing the library mentioned above, upload the following code to your XIAO ESP32C3:
 
