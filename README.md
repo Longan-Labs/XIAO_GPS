@@ -65,7 +65,7 @@ void setup()
 
 void loop()
 {
-    while(Serial1.available())Serial.write();
+    while(Serial1.available())Serial.write(Serial1.read());
 }
 ```
 
